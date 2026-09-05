@@ -34,8 +34,26 @@ module "private_endpoint" {
     depends_on = []
 }
 
-module "private_dns_zone" {
-    source = "../../modules/private_dns_zone"
-    private_dns_zones = try(var.private_dns_zones, [])
+module "databricks" {
+    source = "../../modules/databricks"
+    databricks = try(var.databricks, [])
+    depends_on = []
+}
+
+module "databricks_config" {
+    source = "../../modules/databricks_config"
+    databricks_config = try(var.databricks_config, [])
+    depends_on = []
+}
+
+module "network_security_groups" {
+    source = "../../modules/network_security_groups"
+    network_security_groups = try(var.network_security_groups, [])
+    depends_on = []
+}
+
+module "access_connectors" {
+    source = "../../modules/access_connectors"
+    access_connectors = try(var.access_connectors, [])
     depends_on = []
 }
